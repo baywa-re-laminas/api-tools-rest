@@ -388,7 +388,7 @@ class OptionsListenerTest extends TestCase
         $allow = $headers->get('Allow');
         $allow = $allow->getFieldValue();
         $allow = explode(',', $allow);
-        array_walk($allow, function (&$value) {
+        array_walk($allow, function (&$value): void {
             $value = trim($value);
         });
         sort($allow);

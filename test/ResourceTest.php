@@ -420,7 +420,7 @@ class ResourceTest extends TestCase
             return new ApiProblem(400, 'Random error');
         }, 10);
 
-        $this->events->attach($eventName, function () use (&$called) {
+        $this->events->attach($eventName, function () use (&$called): void {
             $called = true;
         }, 0);
 
@@ -438,7 +438,7 @@ class ResourceTest extends TestCase
     public function testEventParametersAreInjectedIntoEventWhenTriggered($eventName, array $args, $idIsPresent)
     {
         $test = (object) [];
-        $this->events->attach($eventName, function ($e) use ($test) {
+        $this->events->attach($eventName, function ($e) use ($test): void {
             $test->event = $e;
         });
         $this->resource->setEventParam('id', 'OVERWRITTEN');
@@ -466,7 +466,7 @@ class ResourceTest extends TestCase
     public function testComposedQueryParametersAndRouteMatchesAreInjectedIntoEvent($eventName, array $args)
     {
         $test = (object) [];
-        $this->events->attach($eventName, function ($e) use ($test) {
+        $this->events->attach($eventName, function ($e) use ($test): void {
             $test->event = $e;
         });
         $matches     = $this->createRouteMatch([]);

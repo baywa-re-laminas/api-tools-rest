@@ -228,7 +228,7 @@ class RestControllerFactory implements AbstractFactoryInterface
                     // the whitelisted query parameters in order to seed the
                     // collection route options.
                     $whitelist = $value;
-                    $controller->getEventManager()->attach('getList.pre', function (Event $e) use ($whitelist) {
+                    $controller->getEventManager()->attach('getList.pre', function (Event $e) use ($whitelist): void {
                         $controller = $e->getTarget();
                         $resource   = $controller->getResource();
                         if (! $resource instanceof Resource) {
@@ -261,7 +261,7 @@ class RestControllerFactory implements AbstractFactoryInterface
                         $resource->setQueryParams($params);
                     });
 
-                    $controller->getEventManager()->attach('getList.post', function (Event $e) {
+                    $controller->getEventManager()->attach('getList.post', function (Event $e): void {
                         $controller = $e->getTarget();
                         $resource   = $controller->getResource();
                         if (! $resource instanceof Resource) {

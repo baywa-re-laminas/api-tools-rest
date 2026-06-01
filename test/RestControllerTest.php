@@ -222,7 +222,7 @@ class RestControllerTest extends TestCase
 
     public function testCreateReturnsProblemResultOnCreationException()
     {
-        $this->resource->getEventManager()->attach('create', function ($e) {
+        $this->resource->getEventManager()->attach('create', function ($e): void {
             throw new Exception\CreationException('failed');
         });
 
@@ -534,7 +534,7 @@ class RestControllerTest extends TestCase
 
     public function testPatchReturnsProblemResultOnPatchException()
     {
-        $this->resource->getEventManager()->attach('patch', function ($e) {
+        $this->resource->getEventManager()->attach('patch', function ($e): void {
             throw new Exception\PatchException('failed');
         });
 
@@ -556,7 +556,7 @@ class RestControllerTest extends TestCase
 
     public function testUpdateReturnsProblemResultOnUpdateException()
     {
-        $this->resource->getEventManager()->attach('update', function ($e) {
+        $this->resource->getEventManager()->attach('update', function ($e): void {
             throw new Exception\UpdateException('failed');
         });
 
@@ -578,7 +578,7 @@ class RestControllerTest extends TestCase
 
     public function testReplaceListReturnsProblemResultOnUpdateException()
     {
-        $this->resource->getEventManager()->attach('replaceList', function ($e) {
+        $this->resource->getEventManager()->attach('replaceList', function ($e): void {
             throw new Exception\UpdateException('failed');
         });
 
@@ -682,7 +682,7 @@ class RestControllerTest extends TestCase
 
         $test       = new stdClass();
         $test->flag = false;
-        $sharedEvents->attach('MyNamespace\Controller\Foo', 'test', function ($e) use ($test) {
+        $sharedEvents->attach('MyNamespace\Controller\Foo', 'test', function ($e) use ($test): void {
             $test->flag = true;
         });
 
@@ -786,11 +786,11 @@ class RestControllerTest extends TestCase
             'entity'    => false,
         ];
 
-        $this->controller->getEventManager()->attach('create.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('create.pre', function ($e) use ($test): void {
             $test->pre      = true;
             $test->pre_data = $e->getParam('data');
         });
-        $this->controller->getEventManager()->attach('create.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('create.post', function ($e) use ($test): void {
             $test->post      = true;
             $test->post_data = $e->getParam('data');
             $test->entity    = $e->getParam('entity');
@@ -819,11 +819,11 @@ class RestControllerTest extends TestCase
             'post_id' => false,
         ];
 
-        $this->controller->getEventManager()->attach('delete.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('delete.pre', function ($e) use ($test): void {
             $test->pre    = true;
             $test->pre_id = $e->getParam('id');
         });
-        $this->controller->getEventManager()->attach('delete.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('delete.post', function ($e) use ($test): void {
             $test->post    = true;
             $test->post_id = $e->getParam('id');
         });
@@ -846,10 +846,10 @@ class RestControllerTest extends TestCase
             'post' => false,
         ];
 
-        $this->controller->getEventManager()->attach('deleteList.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('deleteList.pre', function ($e) use ($test): void {
             $test->pre = true;
         });
-        $this->controller->getEventManager()->attach('deleteList.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('deleteList.post', function ($e) use ($test): void {
             $test->post = true;
         });
 
@@ -872,11 +872,11 @@ class RestControllerTest extends TestCase
             'entity'  => false,
         ];
 
-        $this->controller->getEventManager()->attach('get.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('get.pre', function ($e) use ($test): void {
             $test->pre    = true;
             $test->pre_id = $e->getParam('id');
         });
-        $this->controller->getEventManager()->attach('get.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('get.post', function ($e) use ($test): void {
             $test->post    = true;
             $test->post_id = $e->getParam('id');
             $test->entity  = $e->getParam('entity');
@@ -908,11 +908,11 @@ class RestControllerTest extends TestCase
             'post_options' => false,
         ];
 
-        $this->controller->getEventManager()->attach('options.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('options.pre', function ($e) use ($test): void {
             $test->pre         = true;
             $test->pre_options = $e->getParam('options');
         });
-        $this->controller->getEventManager()->attach('options.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('options.post', function ($e) use ($test): void {
             $test->post         = true;
             $test->post_options = $e->getParam('options');
         });
@@ -936,11 +936,11 @@ class RestControllerTest extends TestCase
             'post_options' => false,
         ];
 
-        $this->controller->getEventManager()->attach('options.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('options.pre', function ($e) use ($test): void {
             $test->pre         = true;
             $test->pre_options = $e->getParam('options');
         });
-        $this->controller->getEventManager()->attach('options.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('options.post', function ($e) use ($test): void {
             $test->post         = true;
             $test->post_options = $e->getParam('options');
         });
@@ -962,10 +962,10 @@ class RestControllerTest extends TestCase
             'collection' => false,
         ];
 
-        $this->controller->getEventManager()->attach('getList.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('getList.pre', function ($e) use ($test): void {
             $test->pre = true;
         });
-        $this->controller->getEventManager()->attach('getList.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('getList.post', function ($e) use ($test): void {
             $test->post       = true;
             $test->collection = $e->getParam('collection');
         });
@@ -997,12 +997,12 @@ class RestControllerTest extends TestCase
             'entity'    => false,
         ];
 
-        $this->controller->getEventManager()->attach('patch.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('patch.pre', function ($e) use ($test): void {
             $test->pre      = true;
             $test->pre_id   = $e->getParam('id');
             $test->pre_data = $e->getParam('data');
         });
-        $this->controller->getEventManager()->attach('patch.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('patch.post', function ($e) use ($test): void {
             $test->post      = true;
             $test->post_id   = $e->getParam('id');
             $test->post_data = $e->getParam('data');
@@ -1037,12 +1037,12 @@ class RestControllerTest extends TestCase
             'entity'    => false,
         ];
 
-        $this->controller->getEventManager()->attach('update.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('update.pre', function ($e) use ($test): void {
             $test->pre      = true;
             $test->pre_id   = $e->getParam('id');
             $test->pre_data = $e->getParam('data');
         });
-        $this->controller->getEventManager()->attach('update.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('update.post', function ($e) use ($test): void {
             $test->post      = true;
             $test->post_id   = $e->getParam('id');
             $test->post_data = $e->getParam('data');
@@ -1075,11 +1075,11 @@ class RestControllerTest extends TestCase
             'collection' => false,
         ];
 
-        $this->controller->getEventManager()->attach('replaceList.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('replaceList.pre', function ($e) use ($test): void {
             $test->pre      = true;
             $test->pre_data = $e->getParam('data');
         });
-        $this->controller->getEventManager()->attach('replaceList.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('replaceList.post', function ($e) use ($test): void {
             $test->post       = true;
             $test->post_data  = $e->getParam('data');
             $test->collection = $e->getParam('collection');
@@ -1165,7 +1165,7 @@ class RestControllerTest extends TestCase
      */
     public function testExceptionDuringDeleteReturnsApiProblem($event, $method, $args)
     {
-        $this->resource->getEventManager()->attach($event, function ($e) {
+        $this->resource->getEventManager()->attach($event, function ($e): void {
             throw new \Exception('failed');
         });
 
@@ -1349,7 +1349,7 @@ class RestControllerTest extends TestCase
 
     public function testPatchListReturnsProblemResultOnUpdateException()
     {
-        $this->resource->getEventManager()->attach('patchList', function ($e) {
+        $this->resource->getEventManager()->attach('patchList', function ($e): void {
             throw new Exception\UpdateException('failed');
         });
 
@@ -1402,11 +1402,11 @@ class RestControllerTest extends TestCase
             'collection' => false,
         ];
 
-        $this->controller->getEventManager()->attach('patchList.pre', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('patchList.pre', function ($e) use ($test): void {
             $test->pre      = true;
             $test->pre_data = $e->getParam('data');
         });
-        $this->controller->getEventManager()->attach('patchList.post', function ($e) use ($test) {
+        $this->controller->getEventManager()->attach('patchList.post', function ($e) use ($test): void {
             $test->post       = true;
             $test->post_data  = $e->getParam('data');
             $test->collection = $e->getParam('collection');
@@ -1897,7 +1897,7 @@ class RestControllerTest extends TestCase
             $this->markTestSkipped('This test only runs on 7.0 and up');
         }
 
-        $this->resource->getEventManager()->attach($event, function ($e) {
+        $this->resource->getEventManager()->attach($event, function ($e): void {
             throw new Error('error: failed');
         });
 
@@ -1913,7 +1913,7 @@ class RestControllerTest extends TestCase
      */
     public function testExceptionInMethodReturnsApiProblem($method, $event, $argv)
     {
-        $this->resource->getEventManager()->attach($event, function ($e) {
+        $this->resource->getEventManager()->attach($event, function ($e): void {
             throw new \Exception('exception: failed');
         });
 

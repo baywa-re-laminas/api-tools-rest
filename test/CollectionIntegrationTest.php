@@ -263,7 +263,7 @@ class CollectionIntegrationTest extends TestCase
 
     public function testCollectionLinksIncludeFullQueryString()
     {
-        $this->controller->getEventManager()->attach('getList.post', function ($e) {
+        $this->controller->getEventManager()->attach('getList.post', function ($e): void {
             $request = $e->getTarget()->getRequest();
             $query   = $request->getQuery('query', false);
             if (! $query) {
@@ -341,7 +341,7 @@ class CollectionIntegrationTest extends TestCase
         );
 
         $collection = $this->setUpCollection();
-        $services->addInitializer(function ($first, $second) use ($collection) {
+        $services->addInitializer(function ($first, $second) use ($collection): void {
             // Initializer signature varies between v2 and v3
             if ($first instanceof ServiceManager) {
                 // v3 signature

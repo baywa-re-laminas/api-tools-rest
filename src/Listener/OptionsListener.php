@@ -172,7 +172,7 @@ class OptionsListener implements ListenerAggregateInterface
         ) {
             $collectionConfig = $config['collection_http_methods'];
             // Ensure the HTTP method names are normalized
-            array_walk($collectionConfig, function (&$value) {
+            array_walk($collectionConfig, function (&$value): void {
                 $value = strtoupper($value);
             });
         }
@@ -192,7 +192,7 @@ class OptionsListener implements ListenerAggregateInterface
         ) {
             $entityConfig = $config['entity_http_methods'];
             // Ensure the HTTP method names are normalized
-            array_walk($entityConfig, function (&$value) {
+            array_walk($entityConfig, function (&$value): void {
                 $value = strtoupper($value);
             });
             return $entityConfig;

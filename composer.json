@@ -20,6 +20,9 @@
     },
     "config": {
         "sort-packages": true,
+        "platform": {
+            "php": "8.2.99"
+        },
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
@@ -30,7 +33,7 @@
         }
     },
     "require": {
-        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
         "laminas-api-tools/api-tools-api-problem": "^1.6.0",
         "laminas-api-tools/api-tools-content-negotiation": "^1.8.0",
         "laminas-api-tools/api-tools-hal": "^1.7",
@@ -52,6 +55,7 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.5.10",
         "psalm/plugin-phpunit": "^0.16.1",
+        "rector/rector": "^2.4",
         "vimeo/psalm": "^4.7"
     },
     "autoload": {

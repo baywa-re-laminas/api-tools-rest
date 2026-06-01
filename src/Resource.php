@@ -312,7 +312,7 @@ class Resource implements ResourceInterface
             ), 400);
         }
 
-        array_walk($data, function ($value, $key) use (&$data) {
+        array_walk($data, function ($value, $key) use (&$data): void {
             if (is_array($value)) {
                 $data[$key] = (object) $value;
                 return;
@@ -403,7 +403,7 @@ class Resource implements ResourceInterface
         }
 
         $original = $data;
-        array_walk($data, function ($value, $key) use (&$data) {
+        array_walk($data, function ($value, $key) use (&$data): void {
             if (is_array($value)) {
                 $data[$key] = new ArrayObject($value);
                 return;
